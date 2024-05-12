@@ -79,6 +79,87 @@ class Serie(db.Model):
 
 
 
+class Comentario(db.Models):
+
+
+    __tablename__ = 'comentario'
+
+    __id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    comentario = db.Column(db.Text, nullable=False)
+
+    data_comentario = db.Column(db.Date, nullable=False)
+
+
+class Review(db.Models):
+
+    __tablename_ = 'review'
+
+    __id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    review = db.Column(db.Text)
+
+    data_review = db.Column(db.Date)
+
+    recomendado = db.Column(db.Bool)
+
+    review_rate = db.Column(db.Float)
+
+
+class Configuracoes:
+
+    __tablename__ = 'cofigurações'
+
+    tema_do_site = db.Column(db.String)
+
+
+
+
+class Usuario(db.Model):
+
+    __tablename__ = 'usuario'
+
+    __id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    username = db.Column(db.String, unique=True, nullable=False)
+
+    email = db.Column(db.String, unique=True, nullable=False)
+
+    senha = db.Column(db.String, nullable=False)
+
+    data_nascimento = db.Column(db.Date, nullable=False)
+
+    genero = db.Column(db.String)
+
+
+
+class Administrador(Usuario):
+
+    __tablename__ = 'administrador'
+
+    id =  db.Column(db.Integer, db.ForeignKey('usuarios.id'), primary_key=True)
+
+
+
+class Perfil:
+
+    __tablename__ = 'perfil'
+
+    __idUsuario = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    obras_assistidas = db.Column(db.String)
+
+    obras_assistindo = db.Column(db.String)
+
+    obras_a_assistir = db.Column(db.String)
+
+    generos_preferidos = db.Column(db.String)
+
+    obras_preferidas = db.Column(db.String)
+
+
+
+
 
 
 

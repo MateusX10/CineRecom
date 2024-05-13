@@ -295,7 +295,7 @@ class Perfil(db.Model):
 @app.route('/')
 def index():
 
-    return "Página home"    
+    return render_template('index.html')
 
 
 @app.route('/filmes')
@@ -343,4 +343,6 @@ def configuracoes():
 
 if __name__ == '__main__':
 
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

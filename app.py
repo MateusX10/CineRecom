@@ -14,7 +14,7 @@ class Filme(db.Model):
 
     __tablename__ = 'filme'
 
-    __id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     titulo = db.Column(db.String)
 
@@ -39,6 +39,33 @@ class Filme(db.Model):
     diretor = db.Column(db.String)
 
     elenco = db.Column(db.String)
+
+
+    def __init__(self, titulo, sinopse, ano_lancamento, genero, average_rate, popularidade, classificacao, duracao, poster, link_trailer, diretor, elenco):
+
+        self.titulo = titulo
+
+        self.sinopse = sinopse
+
+        self.ano_lancamento = ano_lancamento
+
+        self.genero = genero
+
+        self.average_rate = average_rate
+
+        self.popularidade = popularidade
+
+        self.classificacao = classificacao
+
+        self.duracao = duracao
+
+        self.poster = poster
+
+        self.link_trailer = link_trailer
+
+        self.diretor = diretor
+
+        self.elenco = elenco
                               
 
 
@@ -47,7 +74,7 @@ class Serie(db.Model):
 
     __tablename__ = 'serie'
 
-    __id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     titulo = db.Column(db.String)
 
@@ -79,31 +106,85 @@ class Serie(db.Model):
 
 
 
-class Comentario(db.Models):
+    def __init__(self, titulo, sinopse, ano_lancamento, genero, numero_episodios, numero_temporadas, average_rate, popularidade, classificacao, duracao, poster, link_trailer, diretor, elenco):
+
+        self.titulo = titulo
+
+        self.sinopse = sinopse
+
+        self.ano_lancamento = ano_lancamento
+
+        self.genero = genero
+
+        self.numero_episodios = numero_episodios
+
+        self.numero_temporadas = numero_temporadas
+
+        self.average_rate = average_rate
+
+        self.popularidade = popularidade
+
+        self.classificacao = classificacao
+
+        self.duracao = duracao
+
+        self.poster = poster
+
+        self.link_trailer = link_trailer
+
+        self.diretor = diretor
+
+        self.elenco = elenco
+                              
+
+
+
+
+
+class Comentario(db.Model):
 
 
     __tablename__ = 'comentario'
 
-    __id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     comentario = db.Column(db.Text, nullable=False)
 
     data_comentario = db.Column(db.Date, nullable=False)
 
 
-class Review(db.Models):
+    def __init__(self, comentario, data_comentario):
+
+        self.comentario = comentario
+
+
+        self.data_comentario = data_comentario
+
+
+class Review(db.Model):
 
     __tablename_ = 'review'
 
-    __id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     review = db.Column(db.Text)
 
     data_review = db.Column(db.Date)
 
-    recomendado = db.Column(db.Bool)
+    recomendado = db.Column(db.Boolean)
 
     review_rate = db.Column(db.Float)
+
+
+    def __init__(self, review, data_review, recomendado, review_rate):
+
+        self.review = review
+
+        self.data_review = data_review
+
+        self.recomendado = recomendado
+
+        self.review_rate = review_rate
 
 
 class Configuracoes:
@@ -113,13 +194,18 @@ class Configuracoes:
     tema_do_site = db.Column(db.String)
 
 
+    def __init__(self, tema_do_site):
+
+        self.tema_do_site = tema_do_site
+
+
 
 
 class Usuario(db.Model):
 
     __tablename__ = 'usuario'
 
-    __id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     username = db.Column(db.String, unique=True, nullable=False)
 
@@ -132,20 +218,49 @@ class Usuario(db.Model):
     genero = db.Column(db.String)
 
 
+    def __init__(self, username, email, senha, data_nascimento, genero):
 
-class Administrador(Usuario):
+        self.username = username
 
+        self.email = email
+
+        self.sehnha = senha
+
+
+        self.data_nascimento = data_nascimento
+
+        self.genero = genero
+
+
+
+class Administrador(db.Model):
+ 
     __tablename__ = 'administrador'
 
-    id =  db.Column(db.Integer, db.ForeignKey('usuarios.id'), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    username = db.Column(db.String, unique=True, nullable=False)
+
+    email = db.Column(db.String, unique=True, nullable=False)
+
+    senha = db.Column(db.String, nullable=False)
+
+    data_nascimento = db.Column(db.Date, nullable=False)
+
+    genero = db.Column(db.String)
+
+
+    def __init__(self, username, email, senha, data_nascimento, genero):
+
+        super().__init__(username, email, senha, data_nascimento, genero)
 
 
 
-class Perfil:
+class Perfil(db.Model):
 
     __tablename__ = 'perfil'
 
-    __idUsuario = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    idUsuario = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     obras_assistidas = db.Column(db.String)
 
@@ -156,6 +271,19 @@ class Perfil:
     generos_preferidos = db.Column(db.String)
 
     obras_preferidas = db.Column(db.String)
+
+
+    def __init__(self, obras_assistidas, obras_assistindo, obras_a_assistir, generos_preferidos, obras_preferidas):
+
+        self.obras_assistidas = obras_assistidas
+
+        self.obras_assistindo = obras_assistindo
+
+        self.obras_a_assistir = obras_a_assistir
+
+        self.generos_preferidos = generos_preferidos
+
+        self.obras_preferidas = obras_preferidas
 
 
 

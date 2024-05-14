@@ -289,9 +289,6 @@ class Perfil(db.Model):
 
 
 
-
-
-
 @app.route('/')
 def index():
 
@@ -302,6 +299,45 @@ def index():
 def cadastrar():
 
     return render_template("cadastro.html")
+
+
+@app.route('/cadastro', methods=["GET", "POST"])
+def cadastro():
+
+    if request.method == "POST":
+
+        username = request.form.get("username")
+
+        email = request.form.get('email')
+
+        senha = request.form.get("senha")
+
+        data_de_nascimento = request.form.get('data de nacimento')
+
+        genero = request.form.get('gênero')
+
+        if username and email and senha and data_de_nascimento and genero:
+
+            usuario1 = Usuario(username, email, senha, data_de_nascimento, genero)
+
+            # adiciona objeto ao banco de dados
+            db.session.add(usuario1) 
+
+            # adiciona efetivamente o usuário ao banco de dados
+            db.session.commit()
+
+        return redirect(url_for('index'))
+
+
+@app.route('/lista_usuarios')
+def listar_usuarios():
+
+    usuarios = Usuario.query.all()
+
+    return render_template("lista_usuarios.html", usuarios=usuarios)
+
+
+
 
 
 @app.route('/filmes')

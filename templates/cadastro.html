@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <form action="post">
+    <form action="{{ url_for('cadastro')}}" method="POST">
 
         <label for="username">username</label><br>
         <input type="text" id="username" name="username" placaholder="username" required><br><br>

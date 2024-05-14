@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de usuários</title>
+</head>
+<body>
+
+    <table>
+
+        <tr>
+            <td>id</td>
+            <td>username</td>
+            <td>email</td>
+            <td>senha</td>
+            <td>data de nascimento</td>
+            <td>gênero</td>
+        </tr>
+
+        {% for usuario in usuarios %}
+
+        <tr>
+
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.username }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.senha }}</td>
+            <td>{{ usuario.data_nascimento }}</td>
+            <td>{{ usuario.genero }}</td>
+
+        </tr>
+
+        {% endfor %}
+    </table>
+    
+</body>
+</html>

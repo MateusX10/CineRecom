@@ -224,7 +224,7 @@ class Usuario(db.Model):
 
         self.email = email
 
-        self.sehnha = senha
+        self.senha = senha
 
 
         self.data_nascimento = data_nascimento
@@ -304,6 +304,9 @@ def cadastrar():
 @app.route('/cadastro', methods=["GET", "POST"])
 def cadastro():
 
+
+    import datetime
+
     if request.method == "POST":
 
         username = request.form.get("username")
@@ -312,11 +315,18 @@ def cadastro():
 
         senha = request.form.get("senha")
 
-        data_de_nascimento = request.form.get('data de nacimento')
+        data_de_nascimento = request.form.get('data de nascimento')
+
+        
+        
 
         genero = request.form.get('gênero')
 
         if username and email and senha and data_de_nascimento and genero:
+
+
+            data_de_nascimento = datetime.datetime.strptime(data_de_nascimento, '%Y-%m-%d').date()
+
 
             usuario1 = Usuario(username, email, senha, data_de_nascimento, genero)
 
@@ -333,6 +343,12 @@ def cadastro():
 def listar_usuarios():
 
     usuarios = Usuario.query.all()
+
+    for usuario in usuarios:
+
+        print("oi")
+
+        print(f"Username: {usuario.username}")
 
     return render_template("lista_usuarios.html", usuarios=usuarios)
 

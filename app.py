@@ -344,16 +344,26 @@ def listar_usuarios():
 
     usuarios = Usuario.query.all()
 
-    for usuario in usuarios:
-
-        print("oi")
-
-        print(f"Username: {usuario.username}")
 
     return render_template("lista_usuarios.html", usuarios=usuarios)
 
 
 
+@app.route('/excluir/<int:id>')
+def excluir_usuario(id):
+
+    # estou pegando o usuário com id "x" .Estou pegando a primeira consulta que der match
+    usuario_a_ser_excluido = Usuario.query.filter_by(id=id).first()
+
+
+    db.session.delete(usuario_a_ser_excluido)
+
+    db.session.commit()
+
+    usuarios = Usuario.query.all()
+
+
+    return render_template("lista_usuarios.html", usuarios=usuarios)
 
 
 @app.route('/filmes')

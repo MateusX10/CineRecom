@@ -366,6 +366,51 @@ def excluir_usuario(id):
     return render_template("lista_usuarios.html", usuarios=usuarios)
 
 
+
+@app.route('/atualizar/<int:id>', methods=["GET", "POST"])
+def atualizar_usuario(id):
+
+
+    import datetime
+
+    usuario =    Usuario.query.filter_by(id=id).first()
+
+    if request.method == "POST":
+
+        username = request.form.get("username")
+
+        email = request.form.get("email")
+
+        senha = request.form.get("senha")
+
+        data_de_nascimento = request.form.get("data de nascimento")
+
+        genero = request.form.get("gênero")
+
+        if username and email and senha and data_de_nascimento and genero:
+
+            data_de_nascimento = datetime.datetime.strptime(data_de_nascimento, '%Y-%m-%d').date()
+
+            usuario.username = username
+
+            usuario.email = email
+
+            usuario.senha = senha
+
+            usuario.data_nascimento = data_de_nascimento
+
+            usuario.genero = genero
+
+            db.session.commit()
+
+            return redirect(url_for("listar_usuarios"))
+
+
+    return render_template("atualizar.html", usuario=usuario)
+
+
+
+
 @app.route('/filmes')
 def filmes():
 

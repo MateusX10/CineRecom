@@ -233,7 +233,7 @@ class Usuario(db.Model):
 
 
 
-class Administrador(db.Model):
+class Administrador(db.Model): # usuário
  
     __tablename__ = 'administrador'
 
@@ -295,13 +295,19 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/cadastrar')
+
+@app.route('/usuarios')
+def usuarios():
+
+    return render_template('usuarios/home-usuario.html')
+
+@app.route('/usuarios/cadastrar')
 def cadastrar():
 
-    return render_template("cadastro.html")
+    return render_template("usuarios/cadastro.html")
 
 
-@app.route('/cadastro', methods=["GET", "POST"])
+@app.route('/usuarios/cadastro', methods=["GET", "POST"])
 def cadastro():
 
 
@@ -336,20 +342,20 @@ def cadastro():
             # adiciona efetivamente o usuário ao banco de dados
             db.session.commit()
 
-        return redirect(url_for('index'))
+        return redirect(url_for('usuarios'))
 
 
-@app.route('/lista_usuarios')
+@app.route('/usuarios/lista_usuarios')
 def listar_usuarios():
 
     usuarios = Usuario.query.all()
 
 
-    return render_template("lista_usuarios.html", usuarios=usuarios)
+    return render_template("usuarios/lista_usuarios.html", usuarios=usuarios)
 
 
 
-@app.route('/excluir/<int:id>')
+@app.route('/usuarios/excluir/<int:id>')
 def excluir_usuario(id):
 
     # estou pegando o usuário com id "x" .Estou pegando a primeira consulta que der match
@@ -363,11 +369,11 @@ def excluir_usuario(id):
     usuarios = Usuario.query.all()
 
 
-    return render_template("lista_usuarios.html", usuarios=usuarios)
+    return render_template("usuarios/lista_usuarios.html", usuarios=usuarios)
 
 
 
-@app.route('/atualizar/<int:id>', methods=["GET", "POST"])
+@app.route('/usuarios/atualizar/<int:id>', methods=["GET", "POST"])
 def atualizar_usuario(id):
 
 
@@ -406,9 +412,14 @@ def atualizar_usuario(id):
             return redirect(url_for("listar_usuarios"))
 
 
-    return render_template("atualizar.html", usuario=usuario)
+    return render_template("usuarios/atualizar.html", usuario=usuario)
 
 
+
+@app.route("/administradores")
+def administradores():
+
+    return render_template("administradores/index.html")
 
 
 @app.route('/filmes')
@@ -427,15 +438,6 @@ def series():
     return "página séries"
 
 
-@app.route('/usuarios')
-def usuarios():
-
-    return "página usuários"
-
-@app.route('/administradores')
-def administradores():
-
-    return "página administradores"
 
 
 
@@ -459,3 +461,8 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+
+
+
+
+

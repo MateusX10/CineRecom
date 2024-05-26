@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de administradores</title>
+</head>
+<body>
+
+
+    <a href="/administradores">Home</a><br><br>
+
+    <table>
+
+        <tr>
+            <td>id</td>
+            <td>username</td>
+            <td>email</td>
+            <td>senha</td>
+            <td>data de nascimento</td>
+            <td>gênero</td>
+            <td>atualizar</td>
+            <td>Excluir</td>
+        </tr>
+
+        {% for administrador in administradores %}
+
+        <tr>
+
+            <td>{{ administrador.id }}</td>
+            <td>{{ administrador.username }}</td>
+            <td>{{ administrador.email }}</td>
+            <td>{{ administrador.senha }}</td>
+            <td>{{ administrador.data_nascimento }}</td>
+            <td>{{ administrador.genero }}</td>
+            <td><a href="/administradores/atualizar/{{ administrador.id }}">Atualizar</a></td>
+            <td><a href="/administradores/excluir/{{ administrador.id }}">X</a></td>
+
+        </tr>
+
+        {% endfor %}
+    </table>
+    
+</body>
+</html>

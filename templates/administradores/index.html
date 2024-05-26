@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>administradores</title>
+    <title>página home</title>
 </head>
 <body>
 
-    <p>administradores</p>
+    <h1>Página home</h1>
+
+    <hr>
+
+    <a href="{{ url_for('cadastrar_administrador')}}">Cadastrar</a>
+
+    <a href="{{ url_for('listar_administradores')}}">Listar administradores</a>
+
     
 </body>
 </html>

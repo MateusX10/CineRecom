@@ -252,7 +252,16 @@ class Administrador(db.Model): # usuário
 
     def __init__(self, username, email, senha, data_nascimento, genero):
 
-        super().__init__(username, email, senha, data_nascimento, genero)
+        self.username = username
+
+        self.email = email
+
+        self.senha = senha
+
+
+        self.data_nascimento = data_nascimento
+
+        self.genero = genero
 
 
 
@@ -299,16 +308,16 @@ def index():
 @app.route('/usuarios')
 def usuarios():
 
-    return render_template('usuarios/home-usuario.html')
+    return render_template('usuarios/index.html')
 
 @app.route('/usuarios/cadastrar')
-def cadastrar():
+def cadastrar_usuario():
 
     return render_template("usuarios/cadastro.html")
 
 
 @app.route('/usuarios/cadastro', methods=["GET", "POST"])
-def cadastro():
+def cadastro_usuario():
 
 
     import datetime
@@ -351,7 +360,7 @@ def listar_usuarios():
     usuarios = Usuario.query.all()
 
 
-    return render_template("usuarios/lista_usuarios.html", usuarios=usuarios)
+    return render_template("usuarios/listar.html", usuarios=usuarios)
 
 
 
@@ -369,7 +378,7 @@ def excluir_usuario(id):
     usuarios = Usuario.query.all()
 
 
-    return render_template("usuarios/lista_usuarios.html", usuarios=usuarios)
+    return render_template("usuarios/listar.html", usuarios=usuarios)
 
 
 
@@ -420,6 +429,125 @@ def atualizar_usuario(id):
 def administradores():
 
     return render_template("administradores/index.html")
+
+
+
+
+
+@app.route('/administradores/cadastrar')
+def cadastrar_administrador():
+
+    return render_template("administradores/cadastro.html")
+
+
+@app.route('/administradores/cadastro', methods=["GET", "POST"])
+def cadastro_administrador():
+
+
+    import datetime
+
+    if request.method == "POST":
+
+        username = request.form.get("username")
+
+        email = request.form.get('email')
+
+        senha = request.form.get("senha")
+
+        data_de_nascimento = request.form.get('data de nascimento')
+
+        
+        
+
+        genero = request.form.get('gênero')
+
+        if username and email and senha and data_de_nascimento and genero:
+
+
+            data_de_nascimento = datetime.datetime.strptime(data_de_nascimento, '%Y-%m-%d').date()
+
+
+            administrador1 = Administrador(username, email, senha, data_de_nascimento, genero)
+
+            # adiciona objeto ao banco de dados
+            db.session.add(administrador1) 
+
+            # adiciona efetivamente o usuário ao banco de dados
+            db.session.commit()
+
+        return redirect(url_for('administradores'))
+
+
+@app.route('/administradores/lista_administradores')
+def listar_administradores():
+
+    administradores = Administrador.query.all()
+
+
+    return render_template("administradores/listar.html", administradores=administradores)
+
+
+
+@app.route('/administradores/excluir/<int:id>')
+def excluir_administrador(id):
+
+    # estou pegando o administrador com id "x" .Estou pegando a primeira consulta que der match
+    administrador_a_ser_excluido = Administrador.query.filter_by(id=id).first()
+
+
+    db.session.delete(administrador_a_ser_excluido)
+
+    db.session.commit()
+
+    administradores = Administrador.query.all()
+
+
+    return render_template("administradores/listar.html", administradores=administradores)
+
+
+
+@app.route('/administradores/atualizar/<int:id>', methods=["GET", "POST"])
+def atualizar_administrador(id):
+
+
+    import datetime
+
+    administrador = Administrador.query.filter_by(id=id).first()
+
+    if request.method == "POST":
+
+        username = request.form.get("username")
+
+        email = request.form.get("email")
+
+        senha = request.form.get("senha")
+
+        data_de_nascimento = request.form.get("data de nascimento")
+
+        genero = request.form.get("gênero")
+
+        if username and email and senha and data_de_nascimento and genero:
+
+            data_de_nascimento = datetime.datetime.strptime(data_de_nascimento, '%Y-%m-%d').date()
+
+            administrador.username = username
+
+            administrador.email = email
+
+            administrador.senha = senha
+
+            administrador.data_nascimento = data_de_nascimento
+
+            administrador.genero = genero
+
+            db.session.commit()
+
+            return redirect(url_for("listar_administradores"))
+
+
+    return render_template("administradores/atualizar.html", administrador=administrador)
+
+
 
 
 @app.route('/filmes')

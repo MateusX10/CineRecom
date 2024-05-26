@@ -3,22 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar usuário</title>
+    <title>Atualizar</title>
 </head>
 <body>
 
-    <a href="/usuarios">Home</a><br><br>
+    <a href="/administradores">home</a>
 
-    <form action="{{ url_for('cadastro_usuario')}}" method="POST">
+    <h1>Atualizar</h1>
+
+    <form action="" method="post">
 
         <label for="username">username</label><br>
-        <input type="text" id="username" name="username" placaholder="username" required><br><br>
+        <input type="text" id="username" name="username" value="{{ administrador.username }}"><br><br>
+
         <label for="email">email</label><br>
-        <input type="email" id="email" name="email" placeholder="nome@email" required><br><br>
-        <label for="senha">Senha</label><br>
-        <input type="password" id="senha" name="senha" placeholder="senha" required><br><br>
+
+        <input type="email" id="email" name="email" value="{{administrador.email}}"><br><br>
+
+        <label for="senha">senha</label><br>
+
+        <input type="password" id="senha" name="senha" value="{{administrador.senha}}"><br><br>
+
         <label for="data de nascimento">Data de nascimento</label><br>
-        <input type="date" id="data de nascimento" name="data de nascimento" placeholder="dd/mm/yyyy" required><br><br>
+
+        <input type="date" id="data de nascimento" name="data de nascimento"><br><br>
+
+        <label for="gênero">Gênero</label> <br>
+        
         <label for="gênero">Gênero</label><br>
         <input type="radio" id="masculino" name="gênero" value="masculino">
         <label for="masculino">Masculino</label>
@@ -26,7 +37,8 @@
         <label for="feminino">Feminino</label>
         <input type="radio" id="outro" name="gênero" value="outro">
         <label for="outro">Outro</label><br>
-        <input type="submit" value="enviar">
+        <input type="submit" value="atualizar">
+
 
     </form>
     

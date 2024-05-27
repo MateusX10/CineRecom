@@ -8,7 +8,7 @@
 <body>
 
 
-    <a href="/usuarios">Home</a><br><br>
+    <a href="/usuarios"><button>Home</button></a><br><br>
 
     <table>
 
@@ -21,7 +21,9 @@
             <td>gênero</td>
             <td>atualizar</td>
             <td>Excluir</td>
+            
         </tr>
+
 
         {% for usuario in usuarios %}
 
@@ -33,8 +35,8 @@
             <td>{{ usuario.senha }}</td>
             <td>{{ usuario.data_nascimento }}</td>
             <td>{{ usuario.genero }}</td>
-            <td><a href="/usuarios/atualizar/{{ usuario.id }}">Atualizar</a></td>
-            <td><a href="/usuarios/excluir/{{ usuario.id }}">X</a></td>
+            <td><a href="/usuarios/atualizar/{{ usuario.id }}"><button>Atualizar</button></a></td>
+            <td><a href="/usuarios/excluir/{{ usuario.id }}"><button>X</button></a></td>
 
         </tr>
 

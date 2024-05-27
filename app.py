@@ -580,7 +580,7 @@ def perfil():
 @app.route('/configuracoes')
 def configuracoes():
 
-    return 'configurações do sistema'
+    return render_template("configuracoes/index.html")
 
 
 

@@ -572,9 +572,20 @@ def series():
 
 
 
-@app.route('/perfil')
-def perfil():
-    return "perfil de @username"
+@app.route('/usuarios/perfil/<username>')
+def perfil_usuario(username):
+
+    usuario = Usuario.query.filter_by(username=username).first()
+
+    return render_template("perfil/index.html", usuario=usuario)
+
+
+@app.route('/administradores/perfil/<username>')
+def perfil_administrador(username):
+
+    administrador = Administrador.query.filter_by(username=username).first()
+
+    return render_template("perfil/index.html", usuario=administrador)
 
 
 @app.route('/configuracoes')

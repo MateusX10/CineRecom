@@ -10,7 +10,7 @@
 
     <a href="/usuarios"><button>Home</button></a><br><br>
 
-    <table>
+    <table border="1">
 
         <tr>
             <td>id</td>
@@ -30,7 +30,7 @@
         <tr>
 
             <td>{{ usuario.id }}</td>
-            <td>{{ usuario.username }}</td>
+            <td><a href="/usuarios/perfil/{{ usuario.username }}">{{ usuario.username }}</a></td>
             <td>{{ usuario.email }}</td>
             <td>{{ usuario.senha }}</td>
             <td>{{ usuario.data_nascimento }}</td>

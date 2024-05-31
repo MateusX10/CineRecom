@@ -10,7 +10,7 @@
 
     <a href="/administradores"><button>Home</button></a><br><br>
 
-    <table>
+    <table border="1">
 
         <tr>
             <td>id</td>
@@ -28,7 +28,7 @@
         <tr>
 
             <td>{{ administrador.id }}</td>
-            <td>{{ administrador.username }}</td>
+            <td><a href="/administradores/perfil/{{ administrador.username }}">{{ administrador.username }}</a></td>
             <td>{{ administrador.email }}</td>
             <td>{{ administrador.senha }}</td>
             <td>{{ administrador.data_nascimento }}</td>

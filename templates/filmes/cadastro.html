@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar filme</title>
+</head>
+<body>
+
+    <form action="{{ url_for('listar_filmes') }}" method="post">
+
+        <label for="titulo">Título</label><br>
+
+        <input type="text" name="titulo" id="titulo" placeholder="titulo" required><br>
+
+        <label for="sinopse">Sinopse</label><br>
+
+        <textarea name="sinopse" id="sinopse" placeholder="sinopse" rows="16" cols="100" required></textarea><br>
+
+        <label for="ano lançamento">Ano de lançamento</label><br>
+
+        <input type="text" name="ano de lançamento" id="ano de lançamento" placeholder="ex: 2010" required><br>
+
+        <label for="average rate">Nota média</label><br>
+
+        <input type="number" id="average rate" name="average rate" placeholder="ex: 8.5"><br>
+
+        <label for="popularidade">Popularidade</label><br>
+
+        <input type="text" id="popularidade" name="popularidade" placeholder="ex: #7"><br>
+
+        <label for="duração">Duração</label><br>
+
+        <input type="number" id="duração" name="duração" placeholder="em minutos" required><br>
+
+
+
+
+
+    </form>
+
+
+
+
+    
+</body>
+</html>

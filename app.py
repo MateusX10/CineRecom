@@ -553,7 +553,19 @@ def atualizar_administrador(id):
 @app.route('/filmes')
 def filmes():
 
-    return "página filmes"
+    return render_template("filmes/index.html")
+
+
+@app.route('/cadastrar_filme')
+def cadastrar_filme():
+
+    return render_template("filmes/cadastro.html")
+
+
+@app.route("/listar_filmes")
+def listar_filmes():
+
+    pass
 
 
 

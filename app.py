@@ -42,7 +42,7 @@ class Filme(db.Model):
 
 
     def __init__(self, titulo, sinopse, ano_lancamento, genero, average_rate, popularidade, classificacao, duracao, poster, link_trailer, diretor, elenco):
-
+        
         self.titulo = titulo
 
         self.sinopse = sinopse
@@ -562,10 +562,11 @@ def cadastrar_filme():
     return render_template("filmes/cadastro.html")
 
 
-@app.route("/listar_filmes")
+@app.route("/listar_filmes", methods=["GET", "POST"])
 def listar_filmes():
 
-    pass
+    return "tudo certo"
+
 
 
 

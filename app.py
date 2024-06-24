@@ -658,8 +658,19 @@ def atualizar_filme(id):
 
 
 
+@app.route("/filme/excluir/<int:id>")
+def excluir_filme(id):
+
+    filme_a_ser_excluido = Filme.query.filter_by(id=id).first()
 
 
+    db.session.delete(filme_a_ser_excluido)
+
+    db.session.commit()
+
+    filmes = Filme.query.all()
+
+    return render_template("filmes/listar.html", filmes=filmes)
 
 
 

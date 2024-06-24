@@ -7,38 +7,28 @@
 </head>
 <body>
 
-    <form action="{{ url_for('listar_filmes') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url_for('cadastro_filmes') }}" method="post" enctype="multipart/form-data">
 
         <label for="titulo">Título</label><br>
-
         <input type="text" name="titulo" id="titulo" placeholder="titulo" required><br>
 
         <label for="sinopse">Sinopse</label><br>
-
         <textarea name="sinopse" id="sinopse" placeholder="sinopse" rows="16" cols="100" required></textarea><br>
 
-        <label for="ano lançamento">Ano de lançamento</label><br>
+        <label for="ano_lancamento">Ano de lançamento</label><br>
+        <input type="number" name="ano_lancamento" id="ano_lancamento" placeholder="ex: 2010" required><br>
 
-        <input type="text" name="ano de lançamento" id="ano de lançamento" placeholder="ex: 2010" required><br>
+        <label for="genero">Gênero:</label><br>
+        <input type="text" name="genero" id="genero" placeholder="deixar os gêneros separados por vírgula. Ex: ação, aventura, comédia." required><br>
 
-        <label for="gênero">Gênero:</label><br>
-
-        <input type="text" name="gênero" id="gênero" placeholder="deixar os gêneros separados por vírgula.Ex: ação, aventura, comédia." required><br>
-
-
-
-        <label for="average rate">Nota média</label><br>
-
-        <input type="number" id="average rate" name="average rate" placeholder="ex: 8.5"><br>
+        <label for="average_rate">Nota média</label><br>
+        <input type="number" id="average_rate" name="average_rate" placeholder="ex: 8.5" required><br>
 
         <label for="popularidade">Popularidade</label><br>
+        <input type="text" id="popularidade" name="popularidade" placeholder="ex: 7" required><br>
 
-        <input type="text" id="popularidade" name="popularidade" placeholder="ex: #7"><br>
-
-       
         <label for="classificacao">Classificação:</label><br>
-    
-        <select name="classificação" id="classificação" required>
+        <select name="classificacao" id="classificacao" required>
             <option value="" disabled selected>Selecione uma opção</option>
             <option value="10 anos">10 anos</option>
             <option value="12 anos">12 anos</option>
@@ -47,37 +37,23 @@
             <option value="18 anos">18 anos</option>
         </select><br>
 
-
-        <label for="duração">Duração</label><br>
-
-        <input type="number" id="duração" name="duração" placeholder="em minutos" required><br>
+        <label for="duracao">Duração</label><br>
+        <input type="number" id="duracao" name="duracao" placeholder="em minutos" required><br>
 
         <label for="poster">Poster</label><br>
+        <input type="text" id="poster" name="poster"><br>
 
-        <input type="file" id="poster" name="poster" accept="image/*" required><br>
+        <label for="link_trailer">Link do trailer:</label><br>
+        <input type="url" id="link_trailer" name="link_trailer"><br>
 
-        <label for="url">Link do trailer:</label><br>
-
-        <input type="url" id="link do trailer" name="link do trailer"><br>
-
-
-        <label for="diretor">Diretores:</label><br>
-
-        <input type="text" name="diretores" id="diretores" placeholder="separar os diretores por vírgulo caso haja mais de um.Ex: fulano de tal, ciclano de tal, beltano de tal." required><br>
+        <label for="diretores">Diretores:</label><br>
+        <input type="text" name="diretores" id="diretores" placeholder="separar os diretores por vírgula caso haja mais de um. Ex: fulano de tal, ciclano de tal, beltano de tal." required><br>
 
         <label for="elenco">Elenco:</label><br>
-
-        <input type="text" name="elenco" id="elenco" placeholder="deixar elenco separado por vírgula.Ex: fulano de tal, ciclano de tal, beltano de tal." required><br>
-
+        <input type="text" name="elenco" id="elenco" placeholder="deixar elenco separado por vírgula. Ex: fulano de tal, ciclano de tal, beltano de tal." required><br>
 
         <input type="submit" value="adicionar">
-
-
     </form>
 
-
-
-
-    
 </body>
 </html>

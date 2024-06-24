@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect
 
+
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -552,7 +553,6 @@ def atualizar_administrador(id):
 
 @app.route('/filmes')
 def filmes():
-
     return render_template("filmes/index.html")
 
 
@@ -562,11 +562,50 @@ def cadastrar_filme():
     return render_template("filmes/cadastro.html")
 
 
-@app.route("/listar_filmes", methods=["GET", "POST"])
+@app.route("/filmes/cadastro", methods=["GET", "POST"])
+def cadastro_filmes():
+
+    import os
+
+    
+    if request.method == "POST":
+        titulo = request.form.get("titulo")
+        sinopse = request.form.get("sinopse")
+        ano_lancamento = int(request.form.get("ano_lancamento"))  # Convertendo para inteiro
+        genero = request.form.get("genero")
+        average_rate = request.form.get("average_rate")
+        popularidade = request.form.get("popularidade")
+        classificacao = request.form.get("classificacao")
+        duracao = request.form.get("duracao")
+        poster = request.form.get("poster")
+        link_trailer = request.form.get("link_trailer")
+        diretores = request.form.get("diretores")
+        elenco = request.form.get("elenco")
+
+        if titulo and sinopse and ano_lancamento and genero and average_rate and popularidade and classificacao and duracao and poster and link_trailer and diretores and elenco:
+
+            #dados_do_poster = arquivo_do_poster.read()
+
+            #caminho_da_imagem = "/home/mateus/Documentos/estudos/faculdade/tcc/imagens"
+
+
+            filme1 = Filme(titulo, sinopse, ano_lancamento, genero, average_rate, popularidade, classificacao, duracao, poster,  link_trailer, diretores, elenco)
+            db.session.add(filme1)
+            db.session.commit()
+            return redirect(url_for("filmes"))
+
+@app.route('/filmes/listar')
 def listar_filmes():
 
-    return "tudo certo"
+    #import base64
+    filmes = Filme.query.all()
 
+    #poster =  imagem_base64 = base64.b64encode(filmes[0].poster).decode('utf-8')
+
+    #imagem_url = f"data:image/png;base64,{imagem_base64}"
+
+
+    return render_template("filmes/listar.html", filmes=filmes)
 
 
 

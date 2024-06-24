@@ -7,33 +7,31 @@
 </head>
 <body>
 
+    <p>{{ filme.titulo }}</p>
+    <img src="{{ filme.poster }}" style="width: 200px; height: 150px;">
 
-    <h1>Lista de Filmes</h1>
-    {% for filme in filmes %}
-        
-        <p>{{ filme.titulo }}</p>
+    <p>Sinopse: {{ filme.sinopse }}</p>
 
-        <p>{{ filme.sinopse }}</p>
+    <p>Ano de lançamento: {{ filme.ano_lancamento }}</p>
 
-        <p>{{ filme.ano_lancamento }}</p>
+    <p>Gêneros: {{ filme.genero }}.</p>
 
-        <p>{{ filme.genero }}</p>
+    <p>Nota média: {{ filme.average_rate }}</p>
 
-        <p>{{ filme.average_rate }}</p>
+    <p>Popularidade: #{{ filme.popularidade }}</p>
 
-        <p> {{ filme.popularidade }}</p>
+    <p>Classificação: {{ filme.classificacao }}</p>
 
-        <p> {{ filme.classificacao }}</p>
+    <p>Duração: {{filme.duracao }} minutos</p>
 
-        <p> {{filme.duracao }}</p>
+    <p>Trailer: {{filme.link_trailer }}</p>
 
-        <p> {{filme.link_trailer }}</p>
+    <p>Diretor: {{filme.diretor }}</p>
 
-        <p> {{filme.diretor }}</p>
+    <p>Elenco: {{filme.elenco }}</p>
 
-        <p> {{filme.elenco }}</p>
 
-        <img src="{{ filme.poster }}" style="width: 200px; height: 150px;">
+    
 
         
     

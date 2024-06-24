@@ -608,6 +608,58 @@ def listar_filmes():
     return render_template("filmes/listar.html", filmes=filmes)
 
 
+@app.route('/filme/<int:id>')
+def pagina_filme(id):
+
+
+    filme = Filme.query.filter_by(id=id).first()
+
+
+    return render_template("filmes/pagina-filme.html", filme=filme)
+
+
+@app.route('/filme/atualizar/<int:id>', methods=["POST", "GET"])
+def atualizar_filme(id):
+    filme = Filme.query.filter_by(id=id).first()
+
+    if request.method == "POST":
+        titulo = request.form.get("titulo")
+        sinopse = request.form.get("sinopse")
+        ano_lancamento = request.form.get("ano_lancamento")
+        genero = request.form.get("genero")
+        average_rate = request.form.get("average_rate")
+        popularidade = request.form.get("popularidade")
+        classificacao = request.form.get("classificacao")
+        duracao = request.form.get("duracao")
+        poster = request.form.get("poster")
+        link_trailer = request.form.get("link_trailer")
+        diretores = request.form.get("diretores")
+        elenco = request.form.get("elenco")
+
+        if titulo and sinopse and ano_lancamento and genero and average_rate and popularidade and classificacao and duracao and poster and link_trailer and diretores and elenco:
+            filme.titulo = titulo
+            filme.sinopse = sinopse
+            filme.ano_lancamento = ano_lancamento
+            filme.genero = genero
+            filme.average_rate = average_rate
+            filme.popularidade = popularidade
+            filme.classificacao = classificacao
+            filme.duracao = duracao
+            filme.poster = poster
+            filme.link_trailer = link_trailer
+            filme.diretores = diretores
+            filme.elenco = elenco
+
+            db.session.commit()
+            return redirect(url_for("filmes"))  
+
+    return render_template("filmes/atualizar.html", filme=filme)
+
+
+
+
+
+
 
 
 

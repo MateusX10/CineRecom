@@ -11,10 +11,11 @@
     <h1>Lista de Filmes</h1>
     
 
-    <div class="container">
     {% for filme in filmes %}
         
-        <a href="pagina-filme.html<p>{{ filme.titulo }}</p>
+        <a href="/filme/{{ filme.id }}">{{ filme.titulo }}</a>
+        <a href="/filme/atualizar/{{ filme.id }}">Atualizar</a>
+        <a href="#">Excluir</a></a><br>
 
     {% endfor %}
         

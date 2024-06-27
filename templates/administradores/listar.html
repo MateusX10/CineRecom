@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de administradores</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/USRs-ADMs/style.css') }}">
 </head>
 <body>
 
@@ -14,7 +15,7 @@
 
         <tr>
             <td>id</td>
-            <td>username</td>
+            <td>perfil</td>
             <td>email</td>
             <td>senha</td>
             <td>data de nascimento</td>
@@ -28,13 +29,13 @@
         <tr>
 
             <td>{{ administrador.id }}</td>
-            <td><a href="/administradores/perfil/{{ administrador.username }}">{{ administrador.username }}</a></td>
+            <td><a href="/administradores/perfil/{{ administrador.username }}"><button class="botao-perfil-usuario">{{ administrador.username }}</button></a></td>
             <td>{{ administrador.email }}</td>
             <td>{{ administrador.senha }}</td>
             <td>{{ administrador.data_nascimento }}</td>
             <td>{{ administrador.genero }}</td>
-            <td><a href="/administradores/atualizar/{{ administrador.id }}"><button>Atualizar</button></a></td>
-            <td><a href="/administradores/excluir/{{ administrador.id }}"><button>X</button></a></td>
+            <td><a href="/administradores/atualizar/{{ administrador.id }}"><button class="botao-atualizar-verde"></button></a></td>
+            <td><a href="/administradores/excluir/{{ administrador.id }}"><button class="botao-excluir-vermelho"></button></a></td>
 
         </tr>
 

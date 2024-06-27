@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de usuários</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/USRs-ADMs/style.css') }}">
 </head>
 <body>
 
@@ -14,7 +15,7 @@
 
         <tr>
             <td>id</td>
-            <td>username</td>
+            <td>perfil</td>
             <td>email</td>
             <td>senha</td>
             <td>data de nascimento</td>
@@ -30,13 +31,13 @@
         <tr>
 
             <td>{{ usuario.id }}</td>
-            <td><a href="/usuarios/perfil/{{ usuario.username }}">{{ usuario.username }}</a></td>
+            <td><a href="/usuarios/perfil/{{ usuario.username }}"><button class="botao-perfil-usuario">{{ usuario.username }}</button></a></td>
             <td>{{ usuario.email }}</td>
             <td>{{ usuario.senha }}</td>
             <td>{{ usuario.data_nascimento }}</td>
             <td>{{ usuario.genero }}</td>
-            <td><a href="/usuarios/atualizar/{{ usuario.id }}"><button>Atualizar</button></a></td>
-            <td><a href="/usuarios/excluir/{{ usuario.id }}"><button>X</button></a></td>
+            <td><a href="/usuarios/atualizar/{{ usuario.id }}"><button class="botao-atualizar-verde"></button></a></td>
+            <td><a href="/usuarios/excluir/{{ usuario.id }}"><button class="botao-excluir-vermelho"></button></a></td>
 
         </tr>
 

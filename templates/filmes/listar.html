@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Filmes</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/obras/style.css') }}">
 </head>
 <body>
 
@@ -12,10 +12,31 @@
     
 
     {% for filme in filmes %}
-        
-        <a href="/filme/{{ filme.id }}">{{ filme.titulo }}</a>
-        <a href="/filme/atualizar/{{ filme.id }}">Atualizar</a>
-        <a href="/filme/excluir/{{ filme.id }}">Excluir</a><br>
+
+
+        <table border="1">
+
+            <tr>
+
+                <td>Filme</td>
+                <td>Atualizar</td>
+                <td>Excluir</td>
+
+            </tr>
+
+            <tr>
+
+
+            
+                
+                <td><a href="/filme/{{ filme.id }}"><button class="botao-pagina-obra">{{ filme.titulo }}</button></a></td>
+                <td><a href="/filme/atualizar/{{ filme.id }}"><button class="botao-atualizar-verde"></button></a></td>
+                <td><a href="/filme/excluir/{{ filme.id }}"><button class="botao-excluir-vermelho"></button></a></td><br>
+
+            </tr>
+
+        </table>
+
 
     {% endfor %}
         

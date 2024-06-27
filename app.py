@@ -678,7 +678,129 @@ def excluir_filme(id):
 @app.route('/series')
 def series():
 
-    return "página séries"
+    return render_template("series/index.html")
+
+
+
+@app.route('/cadastrar_serie')
+def cadastrar_serie():
+
+    return render_template("series/cadastro.html")
+
+
+@app.route("/seres/cadastro", methods=["GET", "POST"])
+def cadastro_series():
+
+    import os
+
+    
+    if request.method == "POST":
+        titulo = request.form.get("titulo")
+        sinopse = request.form.get("sinopse")
+        ano_lancamento = int(request.form.get("ano_lancamento"))  # Convertendo para inteiro
+        genero = request.form.get("genero")
+        numero_episodios = request.form.get("numero_episodios")
+        numero_temporadas = request.form.get("numero_temporadas")
+        average_rate = request.form.get("average_rate")
+        popularidade = request.form.get("popularidade")
+        classificacao = request.form.get("classificacao")
+        duracao = request.form.get("duracao")
+        poster = request.form.get("poster")
+        link_trailer = request.form.get("link_trailer")
+        diretores = request.form.get("diretores")
+        elenco = request.form.get("elenco")
+
+        if titulo and sinopse and ano_lancamento and genero and numero_episodios and numero_temporadas and average_rate and popularidade and classificacao and duracao and poster and link_trailer and diretores and elenco:
+
+            #dados_do_poster = arquivo_do_poster.read()
+
+            #caminho_da_imagem = "/home/mateus/Documentos/estudos/faculdade/tcc/imagens"
+
+
+            serie1 = Serie(titulo, sinopse, ano_lancamento, genero, numero_episodios, numero_temporadas, average_rate, popularidade, classificacao, duracao, poster,  link_trailer, diretores, elenco)
+            db.session.add(serie1)
+            db.session.commit()
+            return redirect(url_for("series"))
+
+@app.route('/series/listar')
+def listar_series():
+
+    #import base64
+    series = Serie.query.all()
+
+    #poster =  imagem_base64 = base64.b64encode(filmes[0].poster).decode('utf-8')
+
+    #imagem_url = f"data:image/png;base64,{imagem_base64}"
+
+
+    return render_template("series/listar.html", series=series)
+
+
+@app.route('/serie/<int:id>')
+def pagina_serie(id):
+
+
+    serie = Serie.query.filter_by(id=id).first()
+
+
+    return render_template("series/pagina-serie.html", serie=serie)
+
+
+@app.route('/serie/atualizar/<int:id>', methods=["POST", "GET"])
+def atualizar_serie(id):
+    serie = Serie.query.filter_by(id=id).first()
+
+    if request.method == "POST":
+        titulo = request.form.get("titulo")
+        sinopse = request.form.get("sinopse")
+        ano_lancamento = request.form.get("ano_lancamento")
+        genero = request.form.get("genero")
+        numero_episodios = request.form.get("numero_episodios")
+        numero_temporadas = request.form.get("numero_temporadas")
+        average_rate = request.form.get("average_rate")
+        popularidade = request.form.get("popularidade")
+        classificacao = request.form.get("classificacao")
+        duracao = request.form.get("duracao")
+        poster = request.form.get("poster")
+        link_trailer = request.form.get("link_trailer")
+        diretores = request.form.get("diretores")
+        elenco = request.form.get("elenco")
+
+        if titulo and sinopse and ano_lancamento and genero and numero_episodios and numero_temporadas and average_rate and popularidade and classificacao and duracao and poster and link_trailer and diretores and elenco:
+            serie.titulo = titulo
+            serie.sinopse = sinopse
+            serie.ano_lancamento = ano_lancamento
+            serie.genero = genero
+            serie.average_rate = average_rate
+            serie.popularidade = popularidade
+            serie.classificacao = classificacao
+            serie.duracao = duracao
+            serie.poster = poster
+            serie.link_trailer = link_trailer
+            serie.diretores = diretores
+            serie.elenco = elenco
+
+            db.session.commit()
+            return redirect(url_for("series"))  
+
+    return render_template("series/atualizar.html", serie=serie)
+
+
+
+
+@app.route("/serie/excluir/<int:id>")
+def excluir_serie(id):
+
+    serie_a_ser_excluido = Serie.query.filter_by(id=id).first()
+
+
+    db.session.delete(serie_a_ser_excluido)
+
+    db.session.commit()
+
+    series = Serie.query.all()
+
+    return render_template("series/listar.html", series=series)
 
 
 

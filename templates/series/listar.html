@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de séries</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Lista de Séries</h1>
+    
+
+    {% for serie in series %}
+        
+        <a href="/serie/{{ serie.id }}">{{ serie.titulo }}</a>
+        <a href="/serie/atualizar/{{ serie.id }}">Atualizar</a>
+        <a href="/serie/excluir/{{ serie.id }}">Excluir</a><br>
+
+    {% endfor %}
+        
+    
+
+</body>
+</html>

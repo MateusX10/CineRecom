@@ -9,6 +9,14 @@
 <body>
 
     <h1>Lista de Filmes</h1>
+
+    <!--pesquisar por obras-->
+    <form method="GET" action="{{ url_for('listar_filmes') }}">
+
+        <input type="text" name="pesquisa_por_titulo"  id="pesquisa_por_titulo">
+        <button type="submit">pesquisar</button>
+
+    </form>
     
 
     {% for filme in filmes %}

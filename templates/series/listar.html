@@ -10,6 +10,14 @@
 <body>
 
     <h1>Lista de Séries</h1>
+
+    <!--pesquisar por obras-->
+    <form method="GET" action="{{ url_for('listar_series') }}">
+
+        <input type="text" name="pesquisa_por_titulo"  id="pesquisa_por_titulo">
+        <button type="submit">pesquisar</button>
+
+    </form>
     
 
     {% for serie in series %}

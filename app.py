@@ -604,13 +604,15 @@ def cadastro_filmes():
 @app.route('/filmes/listar')
 def listar_filmes():
 
-    #import base64
-    filmes = Filme.query.all()
+    usuario_pesquisou_por_titulo_de_obra = request.args.get('pesquisa_por_titulo')
 
-    #poster =  imagem_base64 = base64.b64encode(filmes[0].poster).decode('utf-8')
+    if usuario_pesquisou_por_titulo_de_obra:
+        filme = usuario_pesquisou_por_titulo_de_obra
+        filmes = Filme.query.filter(Filme.titulo.contains(filme)).all()
 
-    #imagem_url = f"data:image/png;base64,{imagem_base64}"
-
+    else:
+    
+        filmes = Filme.query.all()
 
     return render_template("filmes/listar.html", filmes=filmes)
 
@@ -735,12 +737,15 @@ def cadastro_series():
 @app.route('/series/listar')
 def listar_series():
 
-    #import base64
-    series = Serie.query.all()
+    usuario_pesquisou_por_titulo_de_obra = request.args.get('pesquisa_por_titulo')
 
-    #poster =  imagem_base64 = base64.b64encode(filmes[0].poster).decode('utf-8')
+    if usuario_pesquisou_por_titulo_de_obra:
+        serie = usuario_pesquisou_por_titulo_de_obra
+        series = Serie.query.filter(Serie.titulo.contains(serie)).all()
 
-    #imagem_url = f"data:image/png;base64,{imagem_base64}"
+    else:    
+
+        series = Serie.query.all()
 
 
     return render_template("series/listar.html", series=series)

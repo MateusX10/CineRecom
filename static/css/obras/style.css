@@ -1,3 +1,5 @@
+/*botões*/
+
 .botao-atualizar-verde{
     background-color: green;
     padding: 10px 20px; 
@@ -24,4 +26,29 @@
     display: inlne-block;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+
+/* posicionamento de poster e título do filme*/
+
+
+.obra-container {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+.obra-titulo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+.obra-poster {
+    width: 200px;
+    height: 150px;
 }

@@ -301,8 +301,15 @@ class Perfil(db.Model):
 
 @app.route('/')
 def index():
+    '''-> Lista os filmes e séries da página inicial.
+    '''
 
-    return render_template('index.html')
+
+    filmes = Filme.query.all()
+
+    series = Serie.query.all()
+
+    return render_template('index.html', filmes=filmes, series=series)
 
 
 

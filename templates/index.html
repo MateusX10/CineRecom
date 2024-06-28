@@ -4,20 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>home</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/obras/style.css')}}">
+
 </head>
 <body>
 
+    <h1>CineRecom - Sistema de Recomendação de Filmes e Séries</h1>
 
-    <a href="{{url_for('usuarios') }}"><button>Usuarios</button></a>
 
-    <a href="{{url_for('administradores')}}"><button>Administradores</button></a>
 
     <a href="{{url_for('filmes')}}"><button>filmes</button></a>
 
     <a href="{{ url_for('series') }}"><button>séries</button></a>
 
+    <a href="{{url_for('usuarios') }}"><button>Usuarios</button></a>
+
+    <a href="{{url_for('administradores')}}"><button>Administradores</button></a>
 
     <a href="{{ url_for('configuracoes')}}"><button>Configurações</button></a>
+
+
+
+    <h2>Filmes</h2>
+
+    {% for filme in filmes %}
+
+    <div class="obra-container">
+        <div class="obra-titulo">{{ filme.titulo }}</div>
+        <img src="{{ filme.poster }}" class="obra-poster" alt="{{ filme.titulo }}">
+    </div>
+
+    {% endfor %}
+
+
+    <h2>Séries</h2>
+
+    {% for serie in series %}
+
+    <div class="obra-container">
+        <div class="obra-titulo">{{ serie.titulo }}</div>
+        <img src="{{ serie.poster }}" class="obra-poster" alt="{{ serie.titulo }}">
+    </div>
+
+
+    {% endfor %}
+
+
+
 
     
 </body>

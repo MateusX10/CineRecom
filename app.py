@@ -675,6 +675,9 @@ def excluir_filme(id):
 
 
 
+
+
+
 @app.route('/series')
 def series():
 
@@ -801,10 +804,6 @@ def excluir_serie(id):
     series = Serie.query.all()
 
     return render_template("series/listar.html", series=series)
-
-
-
-
 
 
 

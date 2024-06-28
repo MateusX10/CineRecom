@@ -1,0 +1,27 @@
+.botao-atualizar-verde{
+    background-color: green;
+    padding: 10px 20px; 
+    display: inline-block; 
+    margin: 4px 2px; 
+    cursor: pointer; 
+    border-radius: 8px; 
+}
+
+
+.botao-excluir-vermelho{
+    background-color: red;
+    padding: 10px 20px;
+    display: inlne-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+
+.botao-pagina-obra{
+    background-color: grey;
+    padding: 10px 20px;
+    display: inlne-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}

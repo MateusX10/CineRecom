@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar filme</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
 <body>
 
+    <a href="/"><button>home</button></a>
+    <a href="/filmes"><button>voltar</button></a><br<br>
     <form action="{{ url_for('cadastro_filmes') }}" method="post" enctype="multipart/form-data">
 
         <label for="titulo">Título</label><br>

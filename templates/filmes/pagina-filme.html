@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
 <body>
+
+    <a href="/"><button>home</button></a>
+    <a href="/filmes/listar"><button>voltar</button></a><br<br>
 
     <p>{{ filme.titulo }}</p>
     <img src="{{ filme.poster }}" style="width: 200px; height: 150px;">

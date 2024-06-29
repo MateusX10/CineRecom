@@ -432,6 +432,14 @@ def atualizar_usuario(id):
     return render_template("usuarios/atualizar.html", usuario=usuario)
 
 
+@app.route('/usuarios/perfil/<username>')
+def perfil_usuario(username):
+
+    usuario = Usuario.query.filter_by(username=username).first()
+
+    return render_template("perfil/index.html", usuario=usuario)
+
+
 
 @app.route("/administradores")
 def administradores():
@@ -554,6 +562,14 @@ def atualizar_administrador(id):
 
 
     return render_template("administradores/atualizar.html", administrador=administrador)
+
+
+@app.route('/administradores/perfil/<username>')
+def perfil_administrador(username):
+
+    administrador = Administrador.query.filter_by(username=username).first()
+
+    return render_template("perfil/index.html", usuario=administrador)
 
 
 
@@ -819,27 +835,32 @@ def excluir_serie(id):
 
 
 
-
-@app.route('/usuarios/perfil/<username>')
-def perfil_usuario(username):
-
-    usuario = Usuario.query.filter_by(username=username).first()
-
-    return render_template("perfil/index.html", usuario=usuario)
-
-
-@app.route('/administradores/perfil/<username>')
-def perfil_administrador(username):
-
-    administrador = Administrador.query.filter_by(username=username).first()
-
-    return render_template("perfil/index.html", usuario=administrador)
-
-
 @app.route('/configuracoes')
 def configuracoes():
 
     return render_template("configuracoes/index.html")
+
+
+@app.route('/listar_obras')
+def listar_obras():
+    '''-> função exclusiva para receber as pesquisas por obras feitas na tela inicial do sistema.
+    '''
+
+    obra = request.args.get('pesquisa_por_titulo')
+
+    if obra:
+
+        filmes = Filme.query.filter(Filme.titulo.contains(obra))
+
+        series = Serie.query.filter(Serie.titulo.contains(obra))
+
+    else:
+
+        filmes = Filme.query.all()
+
+        series = Serie.query.all()
+
+    return render_template("index.html", filmes=filmes, series=series)
 
 
 

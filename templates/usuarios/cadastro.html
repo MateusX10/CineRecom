@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar usuário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
 <body>
-
-    <a href="/usuarios"><button>Home</button></a><br><br>
+    <a href="/"><button>home</button></a>
+    <a href="/usuarios"><button>voltar</button></a><br><br>
 
     <form action="{{ url_for('cadastro_usuario')}}" method="POST">
 

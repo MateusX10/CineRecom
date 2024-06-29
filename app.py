@@ -365,7 +365,16 @@ def cadastro_usuario():
 @app.route('/usuarios/lista_usuarios')
 def listar_usuarios():
 
-    usuarios = Usuario.query.all()
+
+    usuario_pesquisou_por_outro_usuario = request.args.get('pesquisa_por_usuario')
+
+    if usuario_pesquisou_por_outro_usuario:
+        usuario = usuario_pesquisou_por_outro_usuario
+        usuarios = Usuario.query.filter(Usuario.username.contains(usuario)).all()
+
+    else:
+
+        usuarios = Usuario.query.all()
 
 
     return render_template("usuarios/listar.html", usuarios=usuarios)
@@ -497,7 +506,15 @@ def cadastro_administrador():
 @app.route('/administradores/lista_administradores')
 def listar_administradores():
 
-    administradores = Administrador.query.all()
+    usuario_pesquisou_por_administrador = request.args.get('pesquisa_por_administrador')
+
+    if usuario_pesquisou_por_administrador:
+        administrador = usuario_pesquisou_por_administrador
+        administradores = Administrador.query.filter(Administrador.username.contains(administrador)).all()
+
+    else:
+
+        administradores = Administrador.query.all()
 
 
     return render_template("administradores/listar.html", administradores=administradores)

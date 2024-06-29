@@ -13,6 +13,14 @@
     <a href="/"><button>home</button></a>
     <a href="/usuarios"><button>voltar</button></a><br><br>
 
+    <!--Pesquisa por usuários-->
+    <form method="GET" action="{{ url_for('listar_usuarios') }}">
+
+        <input type="text" name="pesquisa_por_usuario"  id="pesquisa_por_usuario">
+        <button type="submit">pesquisar</button>
+
+    </form><br><br>
+
     <table border="1">
 
         <tr>

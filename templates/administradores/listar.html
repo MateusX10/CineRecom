@@ -13,6 +13,15 @@
     <a href="/"><button>home</button></a>
     <a href="/administradores"><button>voltar</button></a><br><br>
 
+
+    <!--Pesquisa por administradores-->
+    <form method="GET" action="{{ url_for('listar_administradores') }}">
+
+        <input type="text" name="pesquisa_por_administrador"  id="pesquisa_por_administrador'">
+        <button type="submit">pesquisar</button>
+
+    </form><br><br>
+
     <table border="1">
 
         <tr>

@@ -10,3 +10,9 @@ window.onload = function() {
     document.body.className = tema_salvo;
     document.getElementById('tema_do_sistema').value = tema_salvo;
 }
+
+
+function confirmar_exclusao(){
+
+    return confirm("Tem certeza que deseja excluir?");
+}

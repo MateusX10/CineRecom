@@ -43,7 +43,14 @@
         
                 <td><a href="/serie/{{ serie.id }}"><button class="botao-pagina-obra">{{ serie.titulo }}</button></a></td>
                 <td><a href="/serie/atualizar/{{ serie.id }}"><button class="botao-atualizar-verde"></button></a></td>
-                <td><a href="/serie/excluir/{{ serie.id }}"><button class="botao-excluir-vermelho"></button></a></td><br>
+                <td>
+
+                    <form action="/serie/excluir/{{ serie.id }}" method="POST" onsubmit="return confirmar_exclusao();">
+                    <button type="submit" class="botao-excluir-vermelho"></button><br>
+
+                    </form></td>
+
+               
 
             </tr>
 

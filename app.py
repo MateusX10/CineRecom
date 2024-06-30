@@ -381,14 +381,15 @@ def listar_usuarios():
 
 
 
-@app.route('/usuarios/excluir/<int:id>')
+@app.route('/usuarios/excluir/<int:id>', methods=["POST"])
 def excluir_usuario(id):
 
     # estou pegando o usuário com id "x" .Estou pegando a primeira consulta que der match
     usuario_a_ser_excluido = Usuario.query.filter_by(id=id).first()
 
+    if usuario_a_ser_excluido:
 
-    db.session.delete(usuario_a_ser_excluido)
+        db.session.delete(usuario_a_ser_excluido)
 
     db.session.commit()
 
@@ -521,14 +522,15 @@ def listar_administradores():
 
 
 
-@app.route('/administradores/excluir/<int:id>')
+@app.route('/administradores/excluir/<int:id>', methods=["POST"])
 def excluir_administrador(id):
 
     # estou pegando o administrador com id "x" .Estou pegando a primeira consulta que der match
     administrador_a_ser_excluido = Administrador.query.filter_by(id=id).first()
 
+    if administrador_a_ser_excluido:
 
-    db.session.delete(administrador_a_ser_excluido)
+        db.session.delete(administrador_a_ser_excluido)
 
     db.session.commit()
 
@@ -700,13 +702,13 @@ def atualizar_filme(id):
 
 
 
-@app.route("/filme/excluir/<int:id>")
+@app.route("/filme/excluir/<int:id>", methods=["POST"])
 def excluir_filme(id):
 
     filme_a_ser_excluido = Filme.query.filter_by(id=id).first()
 
-
-    db.session.delete(filme_a_ser_excluido)
+    if filme_a_ser_excluido:
+        db.session.delete(filme_a_ser_excluido)
 
     db.session.commit()
 
@@ -836,13 +838,16 @@ def atualizar_serie(id):
 
 
 
-@app.route("/serie/excluir/<int:id>")
+@app.route("/serie/excluir/<int:id>", methods=["POST"])
 def excluir_serie(id):
 
     serie_a_ser_excluido = Serie.query.filter_by(id=id).first()
 
 
-    db.session.delete(serie_a_ser_excluido)
+    if serie_a_ser_excluido:
+
+
+        db.session.delete(serie_a_ser_excluido)
 
     db.session.commit()
 
@@ -885,7 +890,7 @@ if __name__ == '__main__':
 
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
 
 
 

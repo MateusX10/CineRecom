@@ -10,50 +10,34 @@
 </head>
 <body>
 
-    <a href="/"><button>home</button></a>
-    <a href="/filmes"><button>voltar</button></a><br<br>
+    <a href="/"><button>Home</button></a>
+    <a href="/filmes"><button>Voltar</button></a><br><br>
 
     <h1>Lista de Filmes</h1>
 
     <!--pesquisar por obras-->
     <form method="GET" action="{{ url_for('listar_filmes') }}">
-
-        <input type="text" name="pesquisa_por_titulo"  id="pesquisa_por_titulo">
-        <button type="submit">pesquisar</button>
-
+        <input type="text" name="pesquisa_por_titulo" id="pesquisa_por_titulo">
+        <button type="submit">Pesquisar</button><br><br>
     </form>
     
-
     {% for filme in filmes %}
-
-
         <table border="1">
-
             <tr>
-
                 <td>Filme</td>
                 <td>Atualizar</td>
                 <td>Excluir</td>
-
             </tr>
-
             <tr>
-
-
-            
-                
                 <td><a href="/filme/{{ filme.id }}"><button class="botao-pagina-obra">{{ filme.titulo }}</button></a></td>
                 <td><a href="/filme/atualizar/{{ filme.id }}"><button class="botao-atualizar-verde"></button></a></td>
-                <td><a href="/filme/excluir/{{ filme.id }}"><button class="botao-excluir-vermelho"></button></a></td><br>
-
+                <td>
+                    <form action="/filme/excluir/{{ filme.id }}" method="POST" onsubmit="return confirmar_exclusao();">
+                        <button type="submit" class="botao-excluir-vermelho"></button>
+                    </form>
+                </td>
             </tr>
-
         </table>
-
-
     {% endfor %}
-        
-    
-
 </body>
 </html>

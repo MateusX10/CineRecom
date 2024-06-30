@@ -47,7 +47,13 @@
             <td>{{ usuario.data_nascimento }}</td>
             <td>{{ usuario.genero }}</td>
             <td><a href="/usuarios/atualizar/{{ usuario.id }}"><button class="botao-atualizar-verde"></button></a></td>
-            <td><a href="/usuarios/excluir/{{ usuario.id }}"><button class="botao-excluir-vermelho"></button></a></td>
+            <td>
+
+                <form action="/usuarios/excluir/{{ usuario.id }}" method="POST" onsubmit="return confirmar_exclusao();">
+                <button type="submit" class="botao-excluir-vermelho"></button><br>
+
+                </form>
+            </td>
 
         </tr>
 

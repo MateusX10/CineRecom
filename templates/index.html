@@ -25,6 +25,10 @@
 
     <a href="{{ url_for('configuracoes')}}"><button>Configurações</button></a><br><br>
 
+    <button id="botao_cadastrar">Cadastrar</button>
+
+    <button id="botao_login">Login</button>
+
     <form method="GET" action="{{ url_for('listar_obras') }}">
 
         <input type="text" name="pesquisa_por_titulo"  id="pesquisa_por_titulo">

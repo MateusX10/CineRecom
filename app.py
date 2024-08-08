@@ -717,7 +717,10 @@ def excluir_filme(id):
     return render_template("filmes/listar.html", filmes=filmes)
 
 
+#@app.route('/comentar_filme')
+#def cadastrar_comentar_do_filme():
 
+ #   return render_template('filmes/adicionar_comentario.html')
 
 
 

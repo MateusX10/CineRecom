@@ -190,6 +190,17 @@ class Review(db.Model):
 
     review_rate = db.Column(db.Float)
 
+    id_filme = db.Column(db.Integer, db.ForeignKey('filme.id'), nullable=False)
+
+    id_serie = db.Column(db.Integer, db.ForeignKey('serie.id'), nullable=False)
+
+    # cria atributo "reviews" na classe "Filme"
+    filme = db.relationship('Filme', backref=db.backref('reviews', lazy=True))
+
+    # cria atributo "reviews" na classe "Serie"
+    serie = db.relationship('Serie', backref=db.backref('reviews', lazy=True))
+    
+
 
     def __init__(self, review, data_review, recomendado, review_rate):
 

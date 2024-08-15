@@ -41,6 +41,8 @@ class Filme(db.Model):
 
     elenco = db.Column(db.String)
 
+    
+
 
     def __init__(self, titulo, sinopse, ano_lancamento, genero, average_rate, popularidade, classificacao, duracao, poster, link_trailer, diretor, elenco):
         
@@ -105,6 +107,8 @@ class Serie(db.Model):
 
     elenco = db.Column(db.String)
 
+    
+
 
 
     def __init__(self, titulo, sinopse, ano_lancamento, genero, numero_episodios, numero_temporadas, average_rate, popularidade, classificacao, duracao, poster, link_trailer, diretor, elenco):
@@ -152,6 +156,16 @@ class Comentario(db.Model):
     comentario = db.Column(db.Text, nullable=False)
 
     data_comentario = db.Column(db.Date, nullable=False)
+
+    id_filme = db.Column(db.Integer, db.ForeignKey('filme.id'), nullable=False)
+
+    id_serie = db.Column(db.Integer, db.ForeignKey('serie.id'), nullable=False)
+
+    #cria um atributo "comentarios" na classe Filme
+    filme = db.relationship('Filme', backref=db.backref('comentarios', lazy=True))
+
+    # cria um atributo "comentarios" na classe nSerie
+    serie = db.relationship('Serie', backref=db.backref('comentarios', lazy=True))
 
 
     def __init__(self, comentario, data_comentario):
@@ -717,10 +731,15 @@ def excluir_filme(id):
     return render_template("filmes/listar.html", filmes=filmes)
 
 
-#@app.route('/comentar_filme')
-#def cadastrar_comentar_do_filme():
 
- #   return render_template('filmes/adicionar_comentario.html')
+@app.route('/comentario_cadastrado')
+def comentario_cadastrado():
+
+    if request.method == "POST":
+
+        comentario = request.form.get('comentario')
+
+        
 
 
 

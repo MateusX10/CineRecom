@@ -12,18 +12,18 @@
     <a href="/"><button>home</button></a>
     <a href="/filmes/listar"><button>voltar</button></a><br<br>
 
-    <p>{{ filme.titulo }}</p>
+    <h1>{{ filme.titulo }}</h1>
     <img src="{{ filme.poster }}" style="width: 200px; height: 150px;">
 
-    <p>Sinopse: {{ filme.sinopse }}</p>
+    <h2>Sinopse:</h2> {{ filme.sinopse }}
 
-    <p>Ano de lançamento: {{ filme.ano_lancamento }}</p>
+    <h2>Ano de lançamento:</h2> {{ filme.ano_lancamento }}
 
-    <p>Gêneros: {{ filme.genero }}.</p>
+    <h2>Gêneros: </h2> {{ filme.genero }}.
 
-    <p>Nota média: {{ filme.average_rate }}</p>
+    <h2>Nota média: </h2> {{ filme.average_rate }}
 
-    <p>Popularidade: #{{ filme.popularidade }}</p>
+    <h2>Popularidade:</h2> <p>#{{ filme.popularidade }}</p>
 
     <p>Classificação: {{ filme.classificacao }}</p>
 
@@ -36,14 +36,27 @@
     <p>Elenco: {{filme.elenco }}</p>
 
 
-    <form action="comentario_adicionado" method="POST">
+    <form action="{{ url_for('comentario_cadastrado') }}" method="post" enctype="multipart/form-data">
 
         <textarea name="comentario" id="comentario" rols="26" cols="60" placeholder="digite seu comentário"></textarea><br>
+
+        <input type="hidden" value="{{ filme.id }}" id="id_filme" name="id_filme">
 
         <input type="submit" value="comentar">
 
     
     </form>
+
+
+    <h2>Comentários</h2>
+
+
+    {% for comentario in filme.comentarios %} 
+
+
+    <p>{{ comentario.comentario }}</p>
+
+    {% endfor %}
 
         
 

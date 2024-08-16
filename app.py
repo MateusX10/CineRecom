@@ -3,12 +3,16 @@ from flask import Flask, render_template, request, url_for, redirect
 
 from flask_sqlalchemy import SQLAlchemy
 
+from flask_migrate import Migrate
+
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
 db = SQLAlchemy(app)
+
+migrate = Migrate(app, db)
 
 
 class Filme(db.Model):
@@ -157,23 +161,29 @@ class Comentario(db.Model):
 
     data_comentario = db.Column(db.Date, nullable=False)
 
-    id_filme = db.Column(db.Integer, db.ForeignKey('filme.id'), nullable=False)
+    id_filme = db.Column(db.Integer, db.ForeignKey('filme.id'), nullable=True)
 
-    id_serie = db.Column(db.Integer, db.ForeignKey('serie.id'), nullable=False)
+    id_serie = db.Column(db.Integer, db.ForeignKey('serie.id'), nullable=True)
 
     #cria um atributo "comentarios" na classe Filme
     filme = db.relationship('Filme', backref=db.backref('comentarios', lazy=True))
 
-    # cria um atributo "comentarios" na classe nSerie
+    # cria um atributo "comentarios" na classe Serie
     serie = db.relationship('Serie', backref=db.backref('comentarios', lazy=True))
 
 
-    def __init__(self, comentario, data_comentario):
+    def __init__(self, comentario, filme, serie):
+
+        from datetime import datetime
 
         self.comentario = comentario
 
 
-        self.data_comentario = data_comentario
+        self.data_comentario = datetime.now()
+
+        self.filme = filme
+
+        self.serie = serie
 
 
 class Review(db.Model):
@@ -743,12 +753,30 @@ def excluir_filme(id):
 
 
 
-@app.route('/comentario_cadastrado')
+@app.route('/filme/comentario_cadastrado', methods=["post"])
 def comentario_cadastrado():
 
     if request.method == "POST":
 
-        comentario = request.form.get('comentario')
+        comentario_usuario = request.form.get('comentario')
+
+        id_filme = request.form.get('id_filme')
+
+        id_serie = request.form.get('id_serie')
+
+        filme = Filme.query.get(id_filme) if id_filme else None
+
+        serie = Serie.query.get(id_serie) if id_serie else None
+
+
+        comentario = Comentario(comentario=comentario_usuario, filme=filme,serie=serie)
+
+        db.session.add(comentario)
+
+        db.session.commit()
+
+        return redirect(url_for('pagina_filme', id=id_filme))
+
 
         
 
@@ -781,6 +809,7 @@ def cadastro_series():
         genero = request.form.get("genero")
         numero_episodios = request.form.get("numero_episodios")
         numero_temporadas = request.form.get("numero_temporadas")
+
         average_rate = request.form.get("average_rate")
         popularidade = request.form.get("popularidade")
         classificacao = request.form.get("classificacao")
@@ -923,7 +952,7 @@ if __name__ == '__main__':
 
     with app.app_context():
         db.create_all()
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5800)
 
 
 

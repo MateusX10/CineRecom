@@ -25,17 +25,18 @@
 
     <h2>Popularidade:</h2> <p>#{{ filme.popularidade }}</p>
 
-    <p>Classificação: {{ filme.classificacao }}</p>
+    <h2>Classificação: </h2><p>{{ filme.classificacao }}</p>
 
-    <p>Duração: {{filme.duracao }} minutos</p>
+    <h2>Duração: </h2> <p>{{filme.duracao }} minutos</p>
 
-    <p>Trailer: {{filme.link_trailer }}</p>
+    <h2>Trailer: </h2><p>{{filme.link_trailer }}</p>
 
-    <p>Diretor: {{filme.diretor }}</p>
+    <h2>Diretor: </h2> <p>{{filme.diretor }}</p>
 
-    <p>Elenco: {{filme.elenco }}</p>
+    <h2>Elenco: </h2><p>{{filme.elenco }}</p>
 
 
+    <h2>Comentários</h2>
     <form action="{{ url_for('comentario_cadastrado') }}" method="post" enctype="multipart/form-data">
 
         <textarea name="comentario" id="comentario" rols="26" cols="60" placeholder="digite seu comentário"></textarea><br>
@@ -45,10 +46,8 @@
         <input type="submit" value="comentar">
 
     
-    </form>
+    </form><br>
 
-
-    <h2>Comentários</h2>
 
 
     {% for comentario in filme.comentarios %} 
